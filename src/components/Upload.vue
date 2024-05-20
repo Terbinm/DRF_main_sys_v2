@@ -3,23 +3,62 @@
 </script>
 
 <style scoped>
+h1 {
+  color: white;
+  font-weight: 1000;
+  font-size: 3rem;
+}
 
+h3 {
+  color: white;
+  font-size: 1.2rem;
+}
+.inputT {
+  padding: 10px 50px;
+  font-size: 16px;
+  //color: white;
+  //background-color: #6DC5D1;
+  //border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  //transform: scale(1.05);
+}
+.fileInput {
+  flex: 1;
+  padding: 10px;
+  margin-right: 10px;
+  border: 2px solid #007BFF;
+  border-radius: 5px;
+  font-size: 16px;
+}
+.btn {
+  padding: 10px 100px;
+  font-size: 16px;
+  color: white;
+  background-color: #6DC5D1;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  //transform: scale(1.05);
+}
 </style>
 <template>
-<!--  <form @submit.prevent="upload">-->
-<!--    <input type="file" @change="selectFile">-->
-<!--    <button type="submit">Upload</button>-->
-<!--  </form>-->
+  <!--  <form @submit.prevent="upload">-->
+  <!--    <input type="file" @change="selectFile">-->
+  <!--    <button type="submit">Upload</button>-->
+  <!--  </form>-->
   <form @submit.prevent="submitForm">
     <div>
-      <label for="label">標題</label>
-      <input type="text" id="label" v-model="label" required/>
+      <h3><label for="label">標題</label></h3>
+      <input type="text" class="inputT" id="label" v-model="label" required/>
     </div>
     <div>
-      <label for="upFile">上傳檔案</label>
-      <input type="file" id="upFile" @change="handleFileUpload" required/>
+      <h3><label for="upFile">上傳檔案</label></h3>
+      <input type="file" class="fileInput" id="upFile" @change="handleFileUpload" required/>
     </div>
-    <button type="submit">提交</button>
+    <button type="submit" class="btn">提交</button>
     <p>{{ message }}</p>  <!-- 新增一個元素來顯示消息 -->
   </form>
 </template>
