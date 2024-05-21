@@ -32,19 +32,14 @@
 import { ref, onMounted } from 'vue';
 // import LineChart2 from './LineChart2.vue';  // 確保路徑正確
 
-const data = ref(null);
-const chartData = ref({
-  labels: [],
-  datasets: [
-    {
-      label: 'Severity A',
-      data: [],
-      fill: false,
-      borderColor: 'rgba(75, 192, 192, 1)',
-      tension: 0.1
-    }
-  ]
+const props = defineProps({
+  chartData: {
+    type: Object,
+    required: true
+  }
 });
+
+const data = ref(null);
 
 onMounted(async () => {
   const response = await fetch('http://192.168.31.166:8000/table-dataset/?format=json');
@@ -55,24 +50,25 @@ onMounted(async () => {
   data.value = result;
 
   // Update chart data
-  chartData.value.labels = result.results.map(item => item.date);
-  chartData.value.datasets[0].data = result.results.map(item => item.severity_A);
+  props.chartData.labels = result.results.map(item => item.date);
+  props.chartData.datasets[0].data = result.results.map(item => item.severity_A ? parseFloat(item.severity_A) : 0);
 });
 </script>
 
 <style scoped>
 table {
-  width: 200%;
+  width: 150%;
   border-collapse: collapse;
+  color: #f2f2f2;
 }
 
 th, td {
-  border: 2px solid #ddd;
+  border: 2px solid #f2f2f2;
   padding: 6px;
 }
 
 tr, td :nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: #100C2A;
 }
 
 canvas {

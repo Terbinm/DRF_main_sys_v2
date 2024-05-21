@@ -1,18 +1,53 @@
 <template>
   <div>
-    <h1>Analysis Results</h1>
+    <div class="button-container">
+      <button @click="goToUpload" type="submit" class="btn">Back</button>
+      <button @click="goToLogin" type="submit" class="btn">Log Out</button>
+    </div>
+    <h1>Analysis Results: {{ oldestSeverityA }}</h1>
     <!-- Display your analysis results here -->
     <div class="chart">
       <LineChart />
     </div>
     <h1>History</h1>
-      <AnaTable />
+    <AnaTable :chartData="chartData" />
     <!-- Display your history records here -->
 <!--    <line-chart :chart-data="results"></line-chart>-->
   </div>
 </template>
 
 <script setup>
+import { ref, watchEffect } from 'vue';
+import {useRouter} from "vue-router";
+const chartData = ref({
+  labels: [],
+  datasets: [
+    {
+      label: 'Severity A',
+      data: [],
+      fill: false,
+      // borderColor: 'rgba(75, 192, 192, 1)',
+      tension: 0.1
+    }
+  ]
+});
+
+const oldestSeverityA = ref(0);
+
+watchEffect(() => {
+  if (chartData.value.datasets[0].data.length > 0) {
+    oldestSeverityA.value = chartData.value.datasets[0].data[0];
+  }
+});
+const router = useRouter()
+const goToUpload = () => {
+  router.push('/upload');
+};
+
+const goToLogin = () => {
+  router.push('/');
+};
+
 // import { onMounted, ref } from 'vue'
 // import axios from 'axios'
 //
@@ -46,6 +81,7 @@
 <script>
 import LineChart from './LineChart.vue'
 import AnaTable from './AnaTable.vue'
+
 export default {
   components: {
     LineChart,
@@ -66,7 +102,28 @@ h3 {
   font-size: 1.2rem;
 }
 .chart {
-  width: 200%;
+  width: 150%;
   border-collapse: collapse;
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.btn {
+  width: 300px;
+  padding: 10px 100px;
+  font-size: 16px;
+  color: white;
+  background-color: #6DC5D1;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  margin: 0 50px;
+}
+.btn:hover {
+  background-color: #5bb5c1;
+  transform: scale(1.05);
 }
 </style>

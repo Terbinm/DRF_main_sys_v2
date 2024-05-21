@@ -3,7 +3,7 @@
 
 <style scoped>
 .inputT {
-  width: 190px;
+  width: 300px;
   padding: 5px 50px;
   font-size: 16px;
   //color: white;
@@ -43,8 +43,8 @@ h3 {
 <template>
     <form @submit.prevent="login">
       <h1>LOGIN</h1>
-      <h3>Username： <input v-model="username" type="text" placeholder="Username" class="inputT"></h3>
-      <h3>Password： <input v-model="password" type="password" placeholder="Password" class="inputT"></h3>
+      <h3><input v-model="username" type="text" placeholder="Username" class="inputT"></h3>
+      <h3><input v-model="password" type="password" placeholder="Password" class="inputT"></h3>
       <h1><button type="submit" class="btn">Login</button></h1>
     </form>
 </template>

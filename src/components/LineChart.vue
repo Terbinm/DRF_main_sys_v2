@@ -38,6 +38,9 @@ export default defineComponent({
         // data: [820, 932, 901, 934, 1290, 1330, 1320],
         type: 'line',
         smooth: true
+      },
+      grid: {
+        borderColor: '#f2f2f2'
       }
     })
     const fetchData = async () => {
@@ -97,6 +100,7 @@ export default defineComponent({
 <style scoped>
 .chart{
   height: 400px;
+  border: 2px solid #f2f2f2;
 }
 canvas {
   width: auto;
