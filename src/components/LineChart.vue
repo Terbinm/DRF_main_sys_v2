@@ -1,37 +1,101 @@
-<template>
-  <div>
-    <line-chart :chart-data="chartData" />
-    123
-  </div>
-</template>
+<script lang="ts">
+// import { Options, Vue } from 'vue-class-component';
+// import HelloWorld from '@/components/HelloWorld.vue';
+import VChart, {THEME_KEY} from 'vue-echarts';
+import {LineChart} from 'echarts/charts'
+import axios from 'axios';
+import {TitleComponent, TooltipComponent, LegendComponent, GridComponent} from "echarts/components"
+import {use} from "echarts/core";
+import {CanvasRenderer} from "echarts/renderers"
+import {defineComponent, computed, onBeforeUnmount, onMounted, provide, reactive, ref, shallowRef} from "vue";
 
-<script setup>
-import { ref, watch } from 'vue'
-import { LineChart } from 'vue-chart-3'
-import { defineProps } from 'vue'
 
-// 定義 props
-const props = defineProps({
-  chartData: Object
-})
+use([
+  CanvasRenderer,
+  TitleComponent,
+  TooltipComponent,
+  LegendComponent,
+  GridComponent,
+  LineChart
+]);
 
-const chartData = ref({
-  labels: [], // 這裡放置日期
-  datasets: [
-    {
-      label: 'Severity A',
-      data: [], // 這裡放置 Severity A 的數據
-      backgroundColor: 'rgba(75, 192, 192, 0.2)',
-      borderColor: 'rgba(75, 192, 192, 1)',
-      borderWidth: 1
+export default defineComponent({
+  name: "LineChart",
+  components: {VChart},
+  setup() {
+    provide(THEME_KEY, "dark");
+    const lineChartOption = ref<any>({
+      xAxis: {
+        type: 'category',
+        data: null
+        // data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+      },
+      yAxis: {
+        type: 'value'
+      },
+      series: {
+        data: null,
+        // data: [820, 932, 901, 934, 1290, 1330, 1320],
+        type: 'line',
+        smooth: true
+      }
+    })
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://192.168.31.166:8000/chart-dataset/?format=json');
+        const jsonData = response.data;
+        const dates = jsonData.results.map((item: { date: string }) => item.date);
+        // lineChartOption.value.xAxis.data = dates;
+        const values = jsonData.results.map((item: { severity_A: string | null }) => item.severity_A ? parseFloat(item.severity_A) : 0);
+        lineChartOption.value.xAxis.data = dates;
+        lineChartOption.value.series.data = values;
+        console.log(values)
+        console.log(lineChartOption.value.series.data)
+      } catch (error) {
+        console.error('Error fetching data', error);
+      }
+    };
+
+
+    onMounted(() => {
+      fetchData();
+    });
+
+    // function inputOption() {
+    //   axios.get('http://192.168.31.166:8000/chart-dataset/?format=json')
+    //       .then(response => {
+    //         console.log(response);
+    //         this.createChart(response.data.results);
+    //       })
+    //       .catch(error => {
+    //         console.error(error);
+    //       })
+    //
+    // }
+
+    // const inputData =ref<string | null>({
+    //
+    // })
+
+    return {
+      lineChartOption,
+      // inputOption
     }
-  ]
-})
+  }
 
-// 假設您有一個外部來源的數據，當它更新時，您需要更新圖表數據
-watch(props.chartData, (newData) => {
-  chartData.value.labels = newData.map(item => item.date)
-  chartData.value.datasets[0].data = newData.map(item => item.severity_A)
+
 })
 
 </script>
+
+<template>
+  <div>
+    <v-chart v-if="lineChartOption.series.data" class="chart" :option="lineChartOption" />
+  </div>
+</template>
+
+<style scoped>
+.chart{
+  height: 400px
+}
+</style>
