@@ -9,6 +9,7 @@ import Analysis from './components/Analysis.vue'
 import AnaTable from './components/AnaTable.vue'
 import LineChart from './components/LineChart.vue'
 import LineChart2 from './components/LineChart2.vue'
+import Profile from './components/Profile.vue'
 
 const router = createRouter({
     history: createWebHistory(),
@@ -18,7 +19,8 @@ const router = createRouter({
         { path: '/analysis', component: Analysis },
         { path: '/anaT', component: AnaTable },
         { path: '/linechart', component: LineChart },
-        { path: '/linechart2', component: LineChart2 }
+        { path: '/linechart2', component: LineChart2 },
+        { path: '/profile', component: Profile }
     ]
 })
 

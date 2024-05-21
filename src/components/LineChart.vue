@@ -59,7 +59,6 @@ export default defineComponent({
       }
     };
 
-
     onMounted(() => {
       fetchData();
     });

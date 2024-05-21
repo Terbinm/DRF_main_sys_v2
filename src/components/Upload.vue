@@ -1,22 +1,20 @@
 <template>
-  <!--  <form @submit.prevent="upload">-->
-  <!--    <input type="file" @change="selectFile">-->
-  <!--    <button type="submit">Upload</button>-->
-  <!--  </form>-->
-  <form @submit.prevent="submitForm">
-    <h1>UPLOAD</h1>
-    <div>
-      <h3><label for="label">Patient</label></h3>
-      <input type="text" class="inputT" id="label" v-model="label" required/>
-    </div>
-    <div>
-      <h3><label for="upFile">Upload File</label></h3>
-      <input type="file" class="fileInput" id="upFile" @change="handleFileUpload" required/>
-      <br>
-    </div>
-    <h1><button type="submit" class="btn">Submit</button></h1>
-<!--    <p>{{ message }}</p>  &lt;!&ndash; 新增一個元素來顯示消息 &ndash;&gt;-->
-  </form>
+  <div>
+    <form @submit.prevent="submitForm">
+
+      <div>
+        <h3><label for="label">Description</label></h3>
+        <input type="text" class="inputT" id="label" v-model="label" required/>
+      </div>
+      <div>
+        <h3><label for="upFile">Upload File</label></h3>
+        <input type="file" class="fileInput" id="upFile" @change="handleFileUpload" required/>
+        <br>
+      </div>
+      <button type="submit" class="btn">Submit</button>
+      <!--          <p>{{ message }}</p> -->
+    </form>
+  </div>
 </template>
 
 <script>
@@ -65,7 +63,7 @@ export default {
     submitForm() {
       const formData = new FormData();
       // const router = useRouter();
-      formData.append('label', this.label);
+      formData.append('label', this.description);
       formData.append('need_handle', this.need_handle);
       formData.append('upFile', this.upFile);
       axios.post("http://192.168.31.166:8000/data_view/", formData)
@@ -96,6 +94,9 @@ export default {
 </script>
 
 <style scoped>
+div {
+  margin-bottom: 10px;
+}
 h1 {
   color: white;
   font-weight: 1000;

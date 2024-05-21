@@ -3,7 +3,7 @@
 
 <style scoped>
 .inputT {
-  width: 300px;
+  width: 180px;
   padding: 5px 50px;
   font-size: 16px;
   //color: white;
@@ -14,7 +14,18 @@
   transition: background-color 0.3s, transform 0.2s;
   //transform: scale(1.05);
 }
-
+.inputT2 {
+  width: 190px;
+  padding: 5px 50px;
+  font-size: 16px;
+  //color: white;
+  //background-color: #6DC5D1;
+  //border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  //transform: scale(1.05);
+}
 h1 {
   color: white;
   font-weight: 1000;
@@ -38,15 +49,32 @@ h3 {
   transition: background-color 0.3s, transform 0.2s;
   //transform: scale(1.05);
 }
+label {
+  margin-right: 10px;
+  color: white;
+  font-size: 1.2rem;
+}
+
+div {
+  margin-bottom: 10px;
+}
 </style>
 
 <template>
+  <div>
+    <h1>LOGIN</h1>
     <form @submit.prevent="login">
-      <h1>LOGIN</h1>
-      <h3><input v-model="username" type="text" placeholder="Username" class="inputT"></h3>
-      <h3><input v-model="password" type="password" placeholder="Password" class="inputT"></h3>
-      <h1><button type="submit" class="btn">Login</button></h1>
+      <div>
+        <label for="username">Username：</label>
+        <input v-model="username" type="text" placeholder="Username" class="inputT">
+      </div>
+<div>
+  <label for="password">Password：</label>
+  <input v-model="password" type="password" placeholder="Password" class="inputT2">
+</div>
+      <button type="submit" class="btn">Login</button>
     </form>
+  </div>
 </template>
 
 <script>
@@ -61,9 +89,9 @@ export default {
 
     const login = () => {
       if (username.value === 'admin' && password.value === 'password') {
-        router.push('/upload')
+        router.push('/analysis')
       } else {
-        alert('Invalid credentials')
+        alert('Invalid username or password.')
       }
     }
 

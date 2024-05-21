@@ -4,7 +4,7 @@
       <thead>
       <tr>
         <th>ID</th>
-        <th>Name</th>
+        <th>Description</th>
 <!--        <th>File</th>-->
         <th>Date</th>
         <th>MicroFET 3</th>
@@ -57,7 +57,7 @@ onMounted(async () => {
 
 <style scoped>
 table {
-  width: 150%;
+  width: 100%;
   border-collapse: collapse;
   color: #f2f2f2;
 }

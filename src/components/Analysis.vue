@@ -1,8 +1,9 @@
 <template>
   <div>
     <div class="button-container">
-      <button @click="goToUpload" type="submit" class="btn">Back</button>
+      <button @click="goToUpload" type="submit" class="btn">Analysis</button>
       <button @click="goToLogin" type="submit" class="btn">Log Out</button>
+      <button @click="goToProfile" type="submit" class="btn">Profile</button>
     </div>
     <h1>Analysis Results: {{ oldestSeverityA }}</h1>
     <!-- Display your analysis results here -->
@@ -46,6 +47,9 @@ const goToUpload = () => {
 
 const goToLogin = () => {
   router.push('/');
+};
+const goToProfile = () => {
+  router.push('/profile');
 };
 
 // import { onMounted, ref } from 'vue'
@@ -102,7 +106,7 @@ h3 {
   font-size: 1.2rem;
 }
 .chart {
-  width: 150%;
+  width: 100%;
   border-collapse: collapse;
 }
 .button-container {
