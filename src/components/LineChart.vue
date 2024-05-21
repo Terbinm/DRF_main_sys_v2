@@ -96,6 +96,10 @@ export default defineComponent({
 
 <style scoped>
 .chart{
-  height: 400px
+  height: 400px;
+}
+canvas {
+  width: auto;
+  margin-top: 20px;
 }
 </style>

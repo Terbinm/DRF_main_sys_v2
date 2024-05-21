@@ -2,8 +2,11 @@
   <div>
     <h1>Analysis Results</h1>
     <!-- Display your analysis results here -->
-    <LineChart />
+    <div class="chart">
+      <LineChart />
+    </div>
     <h1>History</h1>
+      <AnaTable />
     <!-- Display your history records here -->
 <!--    <line-chart :chart-data="results"></line-chart>-->
   </div>
@@ -41,12 +44,29 @@
 </script>
 
 <script>
-import LineChart from './LineChart4.vue'
-import LineChart3 from './LineChart3.vue'
+import LineChart from './LineChart.vue'
+import AnaTable from './AnaTable.vue'
 export default {
   components: {
     LineChart,
-    LineChart3
+    AnaTable
   }
 }
 </script>
+
+<style scoped>
+h1 {
+  color: white;
+  font-weight: 1000;
+  font-size: 3rem;
+}
+
+h3 {
+  color: white;
+  font-size: 1.2rem;
+}
+.chart {
+  width: 200%;
+  border-collapse: collapse;
+}
+</style>

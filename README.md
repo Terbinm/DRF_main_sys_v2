@@ -1,6 +1,6 @@
 # vue_fish
 
-# 表格參考
+# 折線圖參考
 https://vue3charts.org/docs/custom-layer
 
 This template should help get you started developing with Vue 3 in Vite.

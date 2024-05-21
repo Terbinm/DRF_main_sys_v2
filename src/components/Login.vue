@@ -2,12 +2,17 @@
 </script>
 
 <style scoped>
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  flex-direction: column;
+.inputT {
+  width: 190px;
+  padding: 5px 50px;
+  font-size: 16px;
+  //color: white;
+  //background-color: #6DC5D1;
+  //border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  //transform: scale(1.05);
 }
 
 h1 {
@@ -22,6 +27,7 @@ h3 {
 }
 
 .btn {
+  width: 300px;
   padding: 10px 100px;
   font-size: 16px;
   color: white;
@@ -35,14 +41,12 @@ h3 {
 </style>
 
 <template>
-  <div class="container">
     <form @submit.prevent="login">
-      <h1>肌肉質量測量系統</h1>
-      <h3>帳號： <input v-model="username" type="text" placeholder="Username"></h3>
-      <h3>密碼： <input v-model="password" type="password" placeholder="Password"></h3>
-      <button type="submit" class="btn">Login</button>
+      <h1>LOGIN</h1>
+      <h3>Username： <input v-model="username" type="text" placeholder="Username" class="inputT"></h3>
+      <h3>Password： <input v-model="password" type="password" placeholder="Password" class="inputT"></h3>
+      <h1><button type="submit" class="btn">Login</button></h1>
     </form>
-  </div>
 </template>
 
 <script>
