@@ -21,8 +21,10 @@
 <!--        <label for="upFile">上傳圖片:</label>-->
 <!--        <input type="file" @change="handleFileUpload" />-->
 <!--      </div>-->
-      <button type="submit" class="btn">Submit</button>
-      <button @click="goToAnalysis" type="submit" class="btn">Back</button>
+      <div>
+        <button type="submit" class="btn">Submit</button>
+        <button @click="goToAnalysis" type="submit" class="btn">Back</button>
+      </div>
 <!--      <button @click="fetchPerson" class="btn">載入資料</button> &lt;!&ndash; 按鈕來獲取人員資料 &ndash;&gt;-->
     </form>
 <!--    <div v-if="message">{{ message }}</div>-->
