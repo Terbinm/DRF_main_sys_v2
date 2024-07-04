@@ -45,7 +45,8 @@ export default defineComponent({
     })
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://192.168.31.166:8000/chart-dataset/?format=json');
+        const response = await axios.get('http://127.0.0.1:8000/table-dataset/?format=json');
+        // const response = await axios.get('http://127.0.0.1:8000/chart-dataset/?format=json');
         const jsonData = response.data;
         const dates = jsonData.results.map((item: { date: string }) => item.date);
         // lineChartOption.value.xAxis.data = dates;

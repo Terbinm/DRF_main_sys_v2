@@ -42,7 +42,8 @@ const props = defineProps({
 const data = ref(null);
 
 onMounted(async () => {
-  const response = await fetch('http://192.168.31.166:8000/table-dataset/?format=json');
+  // const response = await fetch('http://127.0.0.1:8000/chart-dataset/?format=json');
+  const response = await fetch('http://127.0.0.1:8000/table-dataset/?format=json');
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`);
   }

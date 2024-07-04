@@ -2,10 +2,10 @@
   <div>
     <form @submit.prevent="submitForm">
 
-      <div>
-        <h3><label for="label">Description</label></h3>
-        <input type="text" class="inputT" id="label" v-model="label" required/>
-      </div>
+<!--      <div>-->
+<!--        <h3><label for="label">Description</label></h3>-->
+<!--        <input type="text" class="inputT" id="label" v-model="description" required/>-->
+<!--      </div>-->
       <div>
         <h3><label for="upFile">Upload File</label></h3>
         <input type="file" class="fileInput" id="upFile" @change="handleFileUpload" required/>
@@ -48,7 +48,7 @@ export default {
   name: "App",
   data() {
     return {
-      label: '',
+      // label: '',
       need_handle: true,
       description: '',
       upFile: null,
@@ -60,32 +60,56 @@ export default {
     handleFileUpload(event) {
       this.upFile = event.target.files[0];
     },
-    submitForm() {
+    async submitForm() {
       const formData = new FormData();
-      // const router = useRouter();
-      formData.append('label', this.description);
+      formData.append('description', this.description);
       formData.append('need_handle', this.need_handle);
       formData.append('upFile', this.upFile);
-      axios.post("http://192.168.31.166:8000/data_view/", formData)
-          .then(response => {
-            this.result = {
-              status: response.status,
-              data: response.data,
-            };
-            this.label = '';
-            // this.message = '檔案已成功上傳！';  // 如果上傳成功，顯示一個確認消息
-            this.$router.push('/analysis');
-          })
-          .catch(error => {
-            this.result = {
-              status: error.response.status,
-              data: error.response.data,
-            };
-            this.label = '';
-            // this.message = '上傳檔案時出現錯誤。';  // 如果出現錯誤，顯示一個錯誤消息
-            this.$router.push('/analysis');
-          });
+      try {
+        const response = await axios.post("http://127.0.0.1:8000/data_view/", formData);
+        this.result = {
+          status: response.status,
+          data: response.data,
+        };
+        this.description = '';
+        this.upFile = null;
+        this.$router.push('/analysis');
+      } catch (error) {
+        this.result = {
+          status: error.response.status,
+          data: error.response.data,
+        };
+        this.description = '';
+        this.upFile = null;
+        this.$router.push('/analysis');
+      }
     },
+    // submitForm() {
+    //   const formData = new FormData();
+    //   // const router = useRouter();
+    //   formData.append('description', this.description);
+    //   formData.append('need_handle', this.need_handle);
+    //   formData.append('upFile', this.upFile);
+    //   axios.post("http://127.0.0.1:8000/data_view/", formData)
+    //       .then(response => {
+    //         this.result = {
+    //           status: response.status,
+    //           data: response.data,
+    //         };
+    //         this.description = '';
+    //         // this.message = '檔案已成功上傳！';  // 如果上傳成功，顯示一個確認消息
+    //         this.$router.push('/analysis');
+    //       })
+    //       .catch(error => {
+    //         this.result = {
+    //           status: error.response.status,
+    //           data: error.response.data,
+    //         };
+    //         this.description = '';
+    //         // this.message = '上傳檔案時出現錯誤。';  // 如果出現錯誤，顯示一個錯誤消息
+    //         this.$router.push('/analysis');
+    //       });
+    // },
   },
 }
 </script>
@@ -111,13 +135,9 @@ h3 {
   width: 300px;
   padding: 5px 50px;
   font-size: 16px;
-  //color: white;
-  //background-color: #6DC5D1;
-  //border: none;
   border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
-  //transform: scale(1.05);
 }
 .fileInput {
   width: 300px;
@@ -139,6 +159,5 @@ h3 {
   border-radius: 20px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
-  //transform: scale(1.05);
 }
 </style>

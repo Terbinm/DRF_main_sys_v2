@@ -5,7 +5,10 @@
       <button @click="goToLogin" type="submit" class="btn">Log Out</button>
       <button @click="goToProfile" type="submit" class="btn">Profile</button>
     </div>
-    <h1>Analysis Results: {{ oldestSeverityA }}</h1>
+    <h1>Current:
+      <span v-if="oldestSeverityA === -1">File error or prediction failed(-1)</span>
+      <span v-else>{{ oldestSeverityA.toFixed(1) }}</span>
+    </h1>
     <!-- Display your analysis results here -->
     <div class="chart">
       <LineChart />
