@@ -34,7 +34,7 @@ export default {
   //     const formData = new FormData()
   //     formData.append('file', file.value)
   //
-  //     const response = await axios.post('http://163.18.44.158:9000/data_view/?format=api', formData )
+  //     const response = await axios.post('/drf/data_view/?format=api', formData )
   //
   //     if (response.status === 200) {
   //       alert('File uploaded successfully')
@@ -66,7 +66,7 @@ export default {
       formData.append('need_handle', this.need_handle);
       formData.append('upFile', this.upFile);
       try {
-        const response = await axios.post("http://127.0.0.1:8000/data_view/", formData);
+        const response = await axios.post("/drf/data_view/", formData);
         this.result = {
           status: response.status,
           data: response.data,
@@ -90,7 +90,7 @@ export default {
     //   formData.append('description', this.description);
     //   formData.append('need_handle', this.need_handle);
     //   formData.append('upFile', this.upFile);
-    //   axios.post("http://127.0.0.1:8000/data_view/", formData)
+    //   axios.post("/drf/data_view/", formData)
     //       .then(response => {
     //         this.result = {
     //           status: response.status,

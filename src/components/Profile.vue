@@ -71,7 +71,7 @@ export default {
     fetchPerson() {
       // 在這裡更改person_id以匹配你想要獲取的特定個人的ID
       const personId = 1; // 假設要修改的是person_id為1的個人資料
-      axios.get(`http://192.168.31.166:8000/person_view/${personId}/`)
+      axios.get(`/drf/person_view/${personId}/`)
           .then(response => {
             this.person = response.data;
           })
@@ -91,7 +91,7 @@ export default {
         formData.append('person_img', this.upFile);
       }
 
-      axios.put(`http://192.168.31.166:8000/person_view/${this.person.person_id}/`, formData)
+      axios.put(`/drf/person_view/${this.person.person_id}/`, formData)
           .then(response => {
             this.result = {
               status: response.status,
@@ -139,37 +139,25 @@ label {
   width: 210px;
   padding: 5px 50px;
   font-size: 16px;
-  //color: white;
-  //background-color: #6DC5D1;
-  //border: none;
   border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
-  //transform: scale(1.05);
 }
 .inputT {
   width: 220px;
   padding: 5px 50px;
   font-size: 16px;
-  //color: white;
-  //background-color: #6DC5D1;
-  //border: none;
   border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
-  //transform: scale(1.05);
 }
 .inputT2 {
   width: 230px;
   padding: 5px 50px;
   font-size: 16px;
-  //color: white;
-  //background-color: #6DC5D1;
-  //border: none;
   border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
-  //transform: scale(1.05);
 }
 .button-container {
   display: flex;
@@ -186,7 +174,6 @@ label {
   border-radius: 20px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
-  //margin: 0 50px;
 }
 .btn:hover {
   background-color: #5bb5c1;

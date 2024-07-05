@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     fetchData() {
-      axios.get('http://192.168.31.166:8000/chart-dataset/?format=json')
+      axios.get('/drf/chart-dataset/?format=json')
           .then(response => {
             console.log(response);
             this.createChart(response.data.results);

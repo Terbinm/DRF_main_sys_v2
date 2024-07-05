@@ -5,8 +5,9 @@
       <button @click="goToLogin" type="submit" class="btn">Log Out</button>
       <button @click="goToProfile" type="submit" class="btn">Profile</button>
     </div>
-    <h1>Current:
-      <span v-if="oldestSeverityA === -1">File error or prediction failed(-1)</span>
+    <h1>Current Predicted Value:
+      <span v-if="oldestSeverityA === -1">Error Code(-1)</span>
+      <span v-else-if="oldestSeverityA === null">Error Code(0)</span>
       <span v-else>{{ oldestSeverityA.toFixed(1) }}</span>
     </h1>
     <!-- Display your analysis results here -->
@@ -62,10 +63,10 @@ const goToProfile = () => {
 // const history = ref(null)
 //
 // onMounted(async () => {
-//   const historyResponse = await axios.get('http://163.18.44.158:9000/data_view/?format=api')
+//   const historyResponse = await axios.get('/drf/data_view/?format=api')
 //   history.value = historyResponse.data
 //
-//   const resultsResponse = await axios.get('http://163.18.44.158:9000/data_view/?format=api')
+//   const resultsResponse = await axios.get('/drf/data_view/?format=api')
 //   results.value = resultsResponse.data.map(item => ({
 //     date: item.date,
 //     severity_A: item.severity_A,
@@ -75,7 +76,7 @@ const goToProfile = () => {
 //   console.log(results.value)
 //
 //   // 您的 axios.get 程式碼
-//   axios.get('http://163.18.44.158:9000/data_view/?format=api')
+//   axios.get('/drf/data_view/?format=api')
 //       .then(response => {
 //         console.log(response.data);
 //       })

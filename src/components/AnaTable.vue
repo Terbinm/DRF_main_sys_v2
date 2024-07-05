@@ -18,7 +18,11 @@
         <td>{{ item.label }}</td>
 <!--        <td>{{ item.upFile }}</td>-->
         <td>{{ item.date }}</td>
-        <td>{{ item.severity_A }}</td>
+        <td>
+            <span v-if="item.severity_A === -1">Error Code(-1)</span>
+            <span v-else-if="item.severity_A === null">Error Code(0)</span>
+            <span v-else>{{ item.severity_A }}</span>
+        </td>
 <!--        <td>{{ item.handled }}</td>-->
 <!--        <td>{{ item.need_handle }}</td>-->
       </tr>
@@ -42,8 +46,8 @@ const props = defineProps({
 const data = ref(null);
 
 onMounted(async () => {
-  // const response = await fetch('http://127.0.0.1:8000/chart-dataset/?format=json');
-  const response = await fetch('http://127.0.0.1:8000/table-dataset/?format=json');
+  // const response = await fetch('/drf/chart-dataset/?format=json');
+  const response = await fetch('/drf/table-dataset/?format=json');
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`);
   }

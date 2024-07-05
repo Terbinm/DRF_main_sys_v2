@@ -45,12 +45,13 @@ export default defineComponent({
     })
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/table-dataset/?format=json');
-        // const response = await axios.get('http://127.0.0.1:8000/chart-dataset/?format=json');
+        const response = await axios.get('/drf/table-dataset/?format=json');
+        // const response = await axios.get('/drf/chart-dataset/?format=json');
         const jsonData = response.data;
-        const dates = jsonData.results.map((item: { date: string }) => item.date);
         // lineChartOption.value.xAxis.data = dates;
-        const values = jsonData.results.map((item: { severity_A: string | null }) => item.severity_A ? parseFloat(item.severity_A) : 0);
+        const dates = jsonData.results.map((item: { date: string }) => item.date).reverse();
+        const values = jsonData.results.map((item: { severity_A: string | null }) => item.severity_A ? parseFloat(item.severity_A) : 0).reverse();
+
         lineChartOption.value.xAxis.data = dates;
         lineChartOption.value.series.data = values;
         console.log(values)
@@ -65,7 +66,7 @@ export default defineComponent({
     });
 
     // function inputOption() {
-    //   axios.get('http://192.168.31.166:8000/chart-dataset/?format=json')
+    //   axios.get('/drf/chart-dataset/?format=json')
     //       .then(response => {
     //         console.log(response);
     //         this.createChart(response.data.results);
