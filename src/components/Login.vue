@@ -6,25 +6,17 @@
   width: 180px;
   padding: 5px 50px;
   font-size: 16px;
-  //color: white;
-  //background-color: #6DC5D1;
-  //border: none;
   border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
-  //transform: scale(1.05);
 }
 .inputT2 {
   width: 190px;
   padding: 5px 50px;
   font-size: 16px;
-  //color: white;
-  //background-color: #6DC5D1;
-  //border: none;
   border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
-  //transform: scale(1.05);
 }
 h1 {
   color: white;
@@ -47,7 +39,6 @@ h3 {
   border-radius: 20px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
-  //transform: scale(1.05);
 }
 label {
   margin-right: 10px;

@@ -51,7 +51,6 @@ export default defineComponent({
         // lineChartOption.value.xAxis.data = dates;
         const dates = jsonData.results.map((item: { date: string }) => item.date).reverse();
         const values = jsonData.results.map((item: { severity_A: string | null }) => item.severity_A ? parseFloat(item.severity_A) : 0).reverse();
-
         lineChartOption.value.xAxis.data = dates;
         lineChartOption.value.series.data = values;
         console.log(values)

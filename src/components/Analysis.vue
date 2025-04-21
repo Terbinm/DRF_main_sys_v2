@@ -51,6 +51,7 @@ const goToUpload = () => {
 
 const goToLogin = () => {
   router.push('/');
+  // window.location.href = '/login.html';
 };
 const goToProfile = () => {
   router.push('/profile');

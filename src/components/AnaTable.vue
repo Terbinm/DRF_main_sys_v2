@@ -21,6 +21,7 @@
         <td>
             <span v-if="item.severity_A === -1">Error Code(-1)</span>
             <span v-else-if="item.severity_A === null">Error Code(0)</span>
+            <span v-else-if="item.severity_A < 0">Error Code(Math.abs(item.severity_A))</span>
             <span v-else>{{ item.severity_A }}</span>
         </td>
 <!--        <td>{{ item.handled }}</td>-->

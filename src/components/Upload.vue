@@ -1,7 +1,6 @@
 <template>
   <div>
     <form @submit.prevent="submitForm">
-
 <!--      <div>-->
 <!--        <h3><label for="label">Description</label></h3>-->
 <!--        <input type="text" class="inputT" id="label" v-model="description" required/>-->
